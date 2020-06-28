@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            color: aqua;
+            background-color: white;
+        }
+        #content{
+            position: absolute;
+            top: 40%;
+            left: 40%;
+        }
+        .button{
+            height: 50px;
+            width: 110px;
+            background-color: greenyellow;
+            text-align: center;
+            border-radius: 20px;
+            margin-left: 43%;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <button type="button" class="button" id="new">NEW GAME</button>
+    <button type="button" class="button" id="nxtgame">NEXT CHANCE</button>
+    <div id="content">
+    <input class="box" type="text" id="1">&ensp;
+    <input class="box" type="text" id="2">&ensp;
+    <input class="box" type="text" id="3">&ensp;
+    <input class="box" type="text" id="4"><br><br>
+    <input class="box" type="text" id="5">&ensp;
+    <input class="box" type="text" id="6">&ensp;
+    <input class="box" type="text" id="7">&ensp;
+    <input class="box" type="text" id="8"><br><br>
+    <input class="box" type="text" id="9">&ensp;
+    <input class="box" type="text" id="10">&ensp;
+    <input class="box" type="text" id="11">&ensp;
+    <input class="box" type="text" id="12"><br><br>
+    <input class="box" type="text" id="13">&ensp;
+    <input class="box" type="text" id="14">&ensp;
+    <input class="box" type="text" id="15">&ensp;
+    <input class="box" type="text" id="16"><br><br>
+    <input class="box" type="text" id="17">&ensp;
+    <input class="box" type="text" id="18">&ensp;
+    <input class="box" type="text" id="19">&ensp;
+    <input class="box" type="text" id="20"><br><br>
+    
+    </div>
+    <script>
+    var id,count,inputNo,temp;
+    var tempRandom,compRandom;
+    var flag;
+    init();
+    function conditionChecking(){
+        temp = tempInput;
+        if( temp == compRandom){
+            console.log("Winner");
+            flag = false;
+            for(var z=id ; z>= id-4 ; z--){
+            document.getElementById(z).style.backgroundColor = "green";
+        }
+        }
+    if(flag){
+    var c1,c2,c3,c4,i1,i2,i3,i4;
+    c1 = compRandom % 10;
+    compRandom = Math.floor(compRandom/10);
+	c2 = compRandom % 10;
+	compRandom = Math.floor(compRandom/10);
+	c3 = compRandom % 10;
+	compRandom = Math.floor(compRandom/10);
+	c4 = compRandom % 10;
+    i1 = temp % 10;
+    temp = Math.floor(temp/10);
+    i2 = temp % 10;
+    temp = Math.floor(temp/10);
+    i3 = temp % 10;
+    temp = Math.floor(temp/10);
+    i4 = temp % 10;
+   /* console.log(c1);
+    console.log(c2);
+    console.log(c3);
+    console.log(c4);
+    console.log(i1);
+    console.log(i2);
+    console.log(i3);
+    console.log(i4);*/
+    
+    
+    if( i1 == c1 ){
+        document.getElementById(id).style.backgroundColor = "green";
+    }else if( i1 == c2 || i1 == c3 || i1 == c4){
+        document.getElementById(id).style.backgroundColor = "lightblue";
+    }else {
+        document.getElementById(id).style.backgroundColor = "red";
+    }
+    id = id - 1;
+    if( i2 == c2 ){
+        document.getElementById(id).style.backgroundColor = "green";
+    }else if( i2 == c1 || i2 == c3 || i2 == c4){
+        document.getElementById(id).style.backgroundColor = "lightblue";
+    }else {
+        document.getElementById(id).style.backgroundColor = "red";
+    }
+    id = id - 1;
+    if( i3 == c3 ){
+        document.getElementById(id).style.backgroundColor = "green";
+    }else if( i3 == c2 || i3 == c1 || i3 == c4){
+        document.getElementById(id).style.backgroundColor = "lightblue";
+    }else {
+        document.getElementById(id).style.backgroundColor = "red";
+    }
+    id = id - 1;
+    if( i4 == c4 ){
+        document.getElementById(id).style.backgroundColor = "green";
+    }else if( i4 == c2 || i4 == c3 || i4 == c1){
+        document.getElementById(id).style.backgroundColor = "lightblue";
+    }else {
+        document.getElementById(id).style.backgroundColor = "red";
+    }
+    
+    compRandom = tempRandom;
+        }
+        
+    }
+    function init(){
+         for(var i=1;i<=16;i++){
+        document.getElementById(i).value = " ";
+        document.getElementById(i).style.backgroundColor = "white";
+    }
+    flag= true;
+    }
+    document.getElementById("new").addEventListener("click", function(){
+    init();
+    id=4;
+    count=1;
+    compRandom = Math.floor(Math.random() * 10000) + 1;
+    console.log(compRandom);
+    inputNo=prompt("Enter the Number");
+    temp = tempInput = inputNo;
+    tempRandom = compRandom;
+    //document.getElementById("1").value = compRandom ;
+    while(inputNo>=1){
+    	document.getElementById(id).value = Math.floor(inputNo % 10);
+    	inputNo /= 10;
+    	id-=1
+    }
+    id = 4
+    conditionChecking();
+    compRandom = tempRandom;
+    console.log("Final compRandom",compRandom)
+    });
+        
+    
+    document.getElementById("nxtgame").addEventListener("click", function(){
+        if(flag){
+    console.log("Before changing",id);
+    count += 1; 
+    if(count == 2){
+        id = 8;
+    }else if(count == 3){
+        id = 12;
+    }else if(count == 4){
+        id = 16;
+    }else if(count == 5){
+        id = 20;
+    }
+    idtemp = id;
+    console.log("After changing",id);
+    //var compRandom = Math.floor(Math.random() * 10000) + 1;
+    //console.log(compRandom);
+    var inputNo=prompt("Enter the Number");
+    var temp =tempInput = inputNo;
+    //document.getElementById("1").value = compRandom ;
+    while(inputNo>=1){
+    	document.getElementById(id).value = Math.floor(inputNo % 10);
+    	inputNo /= 10;
+    	id-=1
+    }
+    id = idtemp;
+    console.log("NextChance Before",compRandom);
+    conditionChecking();
+    
+    console.log("NextChance After",compRandom);
+        }
+    });
+    
+    
+    
+    </script>
+    
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+FLip
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+div#flip_game{
+	background:#CCC;
+	border:#999 1px solid;
+	width:800px;
+	height:540px;
+	padding:24px;
+	margin:0px auto;
+}
+div#flip_game > div{
+	background: white;
+	border:#000 1px solid;
+	width:71px;
+	height:71px;
+	float:left;
+	margin:10px;
+	padding:20px;
+	font-size:64px;
+	cursor:pointer;
+	text-align:center;
+}
+</style>
+
+</head>
+<body>
+    <select id="difficulty">
+     <option value="Easy">Easy</option>
+     <option value="Medium">Medium</option>
+     <option value="Hard">Hard</option>
+    </select>
+    <div><div id="count">COUNT</div></div>
+    <button id="new">NEW GAME</button>
+<div id="flip_game"></div>
+<script>
+init();
+var chosenNo1=0,chosenNo2=0;
+var id1,id2;
+var count = 0;
+var inputArray=[];
+function init(){
+var chosenNo1=0,chosenNo2=0;
+var id1='',id2='';
+var count = 0;
+
+    alert("Select the Difficulty level before staring a new game");
+}
+
+document.getElementById("new").addEventListener("click",function(){
+    init();
+    var dropDown = document.getElementById("difficulty"); 
+    var difficultLevel = dropDown.options[dropDown.selectedIndex].value; 
+    if( difficultLevel == "Easy"){
+        var html = '';
+        inputArray = [1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9,10,10];
+        inputArray.rearrange();
+        for(var i = 0; i < inputArray.length; i++){
+		html += '<div id="block_'+i+'" onclick="currentblock(this,\''+inputArray[i]+'\')"></div>';
+       
+        }
+         document.getElementById('flip_game').innerHTML = html;
+         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    }else if(difficultLevel == "Medium"){
+            var html = '';
+          inputArray = [1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9,10,10,11,11,12,12];
+         inputArray.rearrange();
+        for(var i = 0; i < inputArray.length; i++){
+		html += '<div id="block_'+i+'" onclick="currentblock(this,\''+inputArray[i]+'\')"></div>';
+        }
+        document.getElementById('flip_game').innerHTML = html;
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    }else if(difficultLevel == "Hard"){
+        var html = '';
+          inputArray = [1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9,10,10,11,11,12,12,13,13,14,14];
+        inputArray.rearrange();
+        for(var i = 0; i < inputArray.length; i++){
+		html += '<div id="block_'+i+'" onclick="currentblock(this,\''+inputArray[i]+'\')"></div>';
+        
+        }
+        document.getElementById('flip_game').innerHTML = html;
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    }
+});
+
+Array.prototype.rearrange = function(){
+    var len = this.length, randomNo, temp;
+    len = len-1
+    while(len > 0){
+        randomNO = Math.floor(Math.random() * (len+1));
+        temp = this[randomNO];
+        this[randomNO] = this[len];
+        this[len] = temp;
+        len -= 1
+    }
+}
+
+ function currentblock(flipblock , no){
+             var blockcode = flipblock.innerHTML
+             if((chosenNo1 == 0 || chosenNo2 == 0 ) && blockcode ==""){
+                 flipblock.innerHTML = no;
+             }
+             if(chosenNo1 == 0){
+                 chosenNo1 = no;
+                 id1 = flipblock.id;
+             }else if(chosenNo2 == 0){
+                 chosenNo2 = no;
+                 id2 = flipblock.id;
+                 
+                 if(chosenNo1 == chosenNo2){
+                     count +=1;
+                     chosenNo1 = 0;
+                     chosenNo2 = 0;
+                     id1 = 0;
+                     id2 = 0;
+                     if(count == inputArray/2){
+                         alert("Game Finished!!!!!You Won");
+                         document.getElementById('flip_game').innerHTML = "";
+                         init();
+                         inputArray.rearrange();
+        for(var i = 0; i < inputArray.length-1; i++){
+		html += '<div id="block_'+i+'" onclick="currentblock(this,\''+inputArray[i]+'\')"></div>';
+       
+        }
+                         
+                     }
+                 }else{
+                     setTimeout(function(){
+                         document.getElementById(id1).style.background = "white" ;
+                     document.getElementById(id2).style.background = "white";
+                     document.getElementById(id1).innerHTML = "";
+                     document.getElementById(id2).innerHTML = "";
+                     chosenNo1 = 0;
+                     chosenNo2 = 0;
+                     id1 = 0;
+                     id2 = 0;
+                     },1000);
+                 }
+             }
+         }
+        
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Updated:
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+div#flip_game{
+	background:#CCC;
+	border:#999 1px solid;
+	width:800px;
+	height:540px;
+	padding:24px;
+	margin:0px auto;
+}
+div#flip_game > div{
+	background: white;
+	border:#000 1px solid;
+	width:71px;
+	height:71px;
+	float:left;
+	margin:10px;
+	padding:20px;
+	font-size:64px;
+	cursor:pointer;
+	text-align:center;
+}
+</style>
+
+</head>
+<body>
+    <select id="difficulty">
+     <option value="Easy">Easy</option>
+     <option value="Medium">Medium</option>
+     <option value="Hard">Hard</option>
+    </select>
+    <h4>Count</h4>
+    <div id="score"></div>
+    <button id="new">NEW GAME</button>
+<div id="flip_game"></div>
+<script>
+var chosenNo1=0,chosenNo2=0;
+var id1,id2;
+var inputArray=[];
+var chosenNo1=0,chosenNo2=0;
+var id1='',id2='';
+var count = 0;
+ alert("Select the Difficulty level before staring a new game");
+
+document.getElementById("new").addEventListener("click",function(){
+    var count = 0;
+    document.getElementById("score").textContent = ""
+    var dropDown = document.getElementById("difficulty"); 
+    var difficultLevel = dropDown.options[dropDown.selectedIndex].value; 
+    if( difficultLevel == "Easy"){
+        var html = '';
+        inputArray = [1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9,10,10];
+        inputArray.rearrange();
+        for(var i = 0; i < inputArray.length; i++){
+		html += '<div id="block_'+i+'" onclick="currentblock(this,\''+inputArray[i]+'\')"></div>';
+       
+        }
+         document.getElementById('flip_game').innerHTML = html;
+         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    }else if(difficultLevel == "Medium"){
+            var html = '';
+          inputArray = [1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9,10,10,11,11,12,12];
+         inputArray.rearrange();
+        for(var i = 0; i < inputArray.length; i++){
+		html += '<div id="block_'+i+'" onclick="currentblock(this,\''+inputArray[i]+'\')"></div>';
+        }
+        document.getElementById('flip_game').innerHTML = html;
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    }else if(difficultLevel == "Hard"){
+        var html = '';
+          inputArray = [1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9,10,10,11,11,12,12,13,13,14,14];
+        inputArray.rearrange();
+        for(var i = 0; i < inputArray.length; i++){
+		html += '<div id="block_'+i+'" onclick="currentblock(this,\''+inputArray[i]+'\')"></div>';
+        
+        }
+        document.getElementById('flip_game').innerHTML = html;
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    }
+});
+
+Array.prototype.rearrange = function(){
+    var len = this.length, randomNo, temp;
+    len = len-1
+    while(len > 0){
+        randomNO = Math.floor(Math.random() * (len+1));
+        temp = this[randomNO];
+        this[randomNO] = this[len];
+        this[len] = temp;
+        len -= 1
+    }
+}
+
+ function currentblock(flipblock , no){
+             var blockcode = flipblock.innerHTML;
+             if((chosenNo1 == 0 || chosenNo2 == 0 ) && flipblock.innerHTML ==""){
+                 flipblock.innerHTML = no;
+             }
+             if(chosenNo1 == 0){
+                 chosenNo1 = no;
+                 id1 = flipblock.id;
+             }else if(chosenNo2 == 0){
+                 chosenNo2 = no;
+                 id2 = flipblock.id;
+                 
+                 if(chosenNo1 == chosenNo2){
+                     count +=1;
+                     document.getElementById("score").textContent = count;
+                     chosenNo1 = 0;
+                     chosenNo2 = 0;
+                     id1 = 0;
+                     id2 = 0;
+                     if(count == (inputArray.length)/2){
+                         alert("Game Finished!!!!!You Won");
+                         document.getElementById('flip_game').innerHTML = "";
+                         inputArray.rearrange();
+        for(var i = 0; i < inputArray.length-1; i++){
+		html += '<div id="block_'+i+'" onclick="currentblock(this,\''+inputArray[i]+'\')"></div>';
+       
+        }
+                         
+                     }
+                 }else{
+                     setTimeout(function(){
+                         document.getElementById(id1).style.background = "white" ;
+                     document.getElementById(id2).style.background = "white";
+                     document.getElementById(id1).innerHTML = "";
+                     document.getElementById(id2).innerHTML = "";
+                     chosenNo1 = 0;
+                     chosenNo2 = 0;
+                     id1 = 0;
+                     id2 = 0;
+                     },1000);
+                 }
+             }
+         }
+        
+</script>
+
+</body>
+</html>
+
